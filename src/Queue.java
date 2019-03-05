@@ -1,4 +1,4 @@
-class Queue<T> {
+class Queue<T> implements ImmutableQueue<T> {
 
     private int length;
     private Node<T> tail;
@@ -33,7 +33,7 @@ class Queue<T> {
         return this.length;
     }
 
-    Queue<T> enQueue(T v) {
+    public Queue<T> enQueue(T v) {
         Node<T> next = new Node<>(v);
         if (this.tail != null) {
             this.tail.addNext(next);
@@ -42,7 +42,15 @@ class Queue<T> {
         return new Queue<>(next, ++this.length);
     }
 
-    T head() {
+    public T head() {
         return this.tail.value();
+    }
+
+    public Queue<T> deQueue() {
+        return null;
+    }
+
+    public boolean isEmpty() {
+        return false;
     }
 }

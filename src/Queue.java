@@ -1,9 +1,10 @@
 class Queue<T> implements ImmutableQueue<T> {
 
     private int length;
+    private Node<T> head;
     private Node<T> tail;
 
-    class Node<N> {
+    private class Node<N> {
         private N value;
         private Node<N> next;
 
@@ -18,13 +19,18 @@ class Queue<T> implements ImmutableQueue<T> {
         void addNext(Node<N> n) {
             this.next = n;
         }
+
+        Node<N> getNext() {
+            return this.next;
+        }
     }
 
     Queue() {
         this.length = 0;
     }
 
-    private Queue(Node<T> tail, int length) {
+    private Queue(Node<T> head, Node<T> tail, int length) {
+        this.head = head;
         this.tail = tail;
         this.length = length;
     }
@@ -37,20 +43,26 @@ class Queue<T> implements ImmutableQueue<T> {
         Node<T> next = new Node<>(v);
         if (this.tail != null) {
             this.tail.addNext(next);
+        } else {
+            this.head = next;
         }
         this.tail = next;
-        return new Queue<>(next, ++this.length);
+
+        return new Queue<>(this.head, this.tail, ++this.length);
     }
 
     public T head() {
-        return this.tail.value();
+        if (head == null) {
+            return null;
+        }
+        return this.head.value();
     }
 
     public Queue<T> deQueue() {
-        return null;
+        return new Queue<>(this.head.getNext(), this.tail, --this.length);
     }
 
     public boolean isEmpty() {
-        return false;
+        return this.length == 0;
     }
 }

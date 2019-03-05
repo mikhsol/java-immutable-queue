@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class QueueTest {
+class QueueTest {
 
     private Queue q;
 
@@ -19,18 +19,18 @@ public class QueueTest {
 
     @Test
     void testAddInt() {
-        this.q.enQueue(1);
+        Queue q = this.q.enQueue(1);
 
-        assertEquals(this.q.head(), 1);
-        assertEquals(this.q.length(), 1);
+        assertEquals(q.head(), 1);
+        assertEquals(q.length(), 1);
     }
 
     @Test
     void testAddString() {
-        this.q.enQueue("hello");
+        Queue q = this.q.enQueue("hello");
 
-        assertEquals(this.q.head(), "hello");
-        assertEquals(this.q.length(), 1);
+        assertEquals(q.head(), "hello");
+        assertEquals(q.length(), 1);
 
     }
 }

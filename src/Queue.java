@@ -3,19 +3,19 @@ class Queue<T> {
     private int length;
     private Node<T> tail;
 
-    class Node<T> {
-        private T value;
-        private Node next;
+    class Node<N> {
+        private N value;
+        private Node<N> next;
 
-        Node(T value) {
+        Node(N value) {
             this.value = value;
         }
 
-        T value() {
+        N value() {
             return this.value;
         }
 
-        void addNext(Node<T> n) {
+        void addNext(Node<N> n) {
             this.next = n;
         }
     }
@@ -24,7 +24,7 @@ class Queue<T> {
         this.length = 0;
     }
 
-    Queue(Node tail, int length) {
+    private Queue(Node<T> tail, int length) {
         this.tail = tail;
         this.length = length;
     }
@@ -34,12 +34,12 @@ class Queue<T> {
     }
 
     Queue<T> enQueue(T v) {
-        Node next = new Node(v);
+        Node<T> next = new Node<>(v);
         if (this.tail != null) {
             this.tail.addNext(next);
         }
         this.tail = next;
-        return new Queue<T>(next, this.length++);
+        return new Queue<>(next, ++this.length);
     }
 
     T head() {

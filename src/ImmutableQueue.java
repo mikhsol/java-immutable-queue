@@ -1,7 +1,7 @@
 public interface ImmutableQueue<T> {
-    public Queue<T> enQueue(T t);
+    Queue<T> enQueue(T t);
     // Removes the element at the beginning of the immutable queue, and returns the new queue.
-    public Queue<T> deQueue();
-    public T head();
-    public boolean isEmpty();
+    Queue<T> deQueue();
+    T head();
+    boolean isEmpty();
 }
